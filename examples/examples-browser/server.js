@@ -48,8 +48,11 @@ app.post('/fetch_external_image', async (req, res) => {
   }
 })
 
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-  app.listen(3000, () => console.log('Listening on port 3000!'))
+// Ensure app listens on the correct port when run directly (Node.js/Railway)
+// but exports the app for serverless (Vercel)
+if (require.main === module) {
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`Listening on port ${port}!`))
 }
 
 module.exports = app

@@ -7,6 +7,7 @@
   "typings": "./build/commonjs/index.d.ts",
   "scripts": {
     "rollup-min": "rollup -c rollup.config.js --environment minify:true",
+    "start": "node examples/examples-browser/server.js",
     "rollup": "rollup -c rollup.config.js",
     "tsc": "tsc",
     "tsc-es6": "tsc --p tsconfig.es6.json",
