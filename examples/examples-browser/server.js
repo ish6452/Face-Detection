@@ -48,10 +48,14 @@ app.post('/fetch_external_image', async (req, res) => {
   }
 })
 
-app.listen(3000, () => console.log('Listening on port 3000!'))
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(3000, () => console.log('Listening on port 3000!'))
+}
+
+module.exports = app
 
 function request(url, returnBuffer = true, timeout = 10000) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     const options = Object.assign(
       {},
       {
@@ -65,7 +69,7 @@ function request(url, returnBuffer = true, timeout = 10000) {
       returnBuffer ? { encoding: null } : {}
     )
 
-    get(options, function(err, res) {
+    get(options, function (err, res) {
       if (err) return reject(err)
       return resolve(res)
     })

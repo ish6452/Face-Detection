@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "examples/examples-browser/server.js",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    "dist/**",
+                    "weights/**",
+                    "examples/examples-browser/views/**",
+                    "examples/examples-browser/public/**",
+                    "examples/examples-browser/media/**",
+                    "examples/images/**",
+                    "examples/media/**"
+                ]
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/examples/examples-browser/server.js"
+        }
+    ]
+}
